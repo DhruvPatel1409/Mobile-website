@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="home1.css">
+    <script src="home1.js"></script>
+</head>
+<body>
+    <nav>
+        <ul class="nav" id="nav">
+            <a class="link search">
+                <i class="fa-solid fa-mobile" style="font-size: 69px;"></i>
+            </a>
+            <h1 class="one">PHONE-PIX</h1>
+            <a href="home1.html">HOME</a>
+            <a href="aboutus.html">ABOUT US</a>
+            <a href="#footer">CONTACT US</a>
+            <a href="https://www.apple.com/in/">MORE INFO.</a>
+            <input type="search" id="search" placeholder="search here">
+            
+            <a class="link search" href="https://www.google.co.in/">
+                <i class="fa-solid fa-magnifying-glass" style="font-size: 40px;"></i>
+            </a>
+            <a href="cart.html">
+                <i class="fa-solid fa-bag-shopping" style="font-size: 50px;"></i>
+                <span class="badge" onclick="updateBagIcon()" id="bagIcon">0</span>
+            </a>
+            <a href="sign up.html" class="user">
+                <i class="fa-solid fa-user" style="font-size: 40px;"></i>
+            </a>
+        </ul>
+    </nav>
+    <header>
+        <h1>Shopping Cart</h1>
+    </header>
+    <main>
+        <section class="products">
+            <div class="product">
+                <img src="Captures/7.webp" alt="Product 1">
+                <h2>Product 1</h2>
+                <p>Price: ₹10</p>
+                <button class="add-to-cart" data-name="Product 1" data-price="10">Add to Cart</button>
+            </div>
+            
+            <div class="product">
+                <img src="Captures/8.jpg" alt="Product 1">
+                <h2>Product 1</h2>
+                <p>Price: ₹20</p>
+                <div class="addtocart"></div>
+                <button class="add-to-cart" data-name="Product 1" data-price="20">Add to Cart</button>
+            </div>
+
+            <div class="product">
+                <img src="Captures/9.jpeg" alt="Product 1">
+                <h2>Product 1</h2>
+                <p>Price: ₹30</p>
+                <button class="add-to-cart" data-name="Product 1" data-price="30">Add to Cart</button>
+            </div>
+        </section>
+        <section class="cart">
+            <h2>Your Cart</h2>
+            <ul id="cart-items"></ul>
+            <p>Total: ₹<span id="cart-total">0</span></p>
+            <button id="checkout-btn">Checkout</button>
+        </section>
+    </main>
+    <script>
+        const cartItems = [];
+let cartTotal = 0;
+
+document.addEventListener('DOMContentLoaded', () => {
+    const addToCartButtons = document.querySelectorAll('.add-to-cart');
+    const cartItemsList = document.getElementById('cart-items');
+    const cartTotalElement = document.getElementById('cart-total');
+    const checkoutButton = document.getElementById('checkout-btn');
+
+    addToCartButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+            const name = button.getAttribute('data-name');
+            const price = parseFloat(button.getAttribute('data-price'));
+
+            // Add item to cart
+            cartItems.push({ name, price });
+
+            // Update cart total
+            cartTotal += price;
+            cartTotalElement.textContent = cartTotal.toFixed(2);
+
+            // Display items in cart
+            const cartItem = document.createElement('li');
+            cartItem.innerHTML = `
+                <span>${name}</span>
+                <span>₹${price.toFixed(2)}</span>
+            `;
+            cartItemsList.appendChild(cartItem);
+        });
+    });
+
+    checkoutButton.addEventListener('click', () => {
+        // Here, you can implement the checkout logic, e.g., redirect to a payment page or show a confirmation message.
+        alert('Thank you for your purchase!');
+    });
+});
+
+    </script>
+</body>
+</html>

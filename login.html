@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOGIN-PAGE</title>
+    <style>
+
+        body{
+            background-image: url('/QSPIDERS/Captures/22.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: white;
+            align-items: center;
+        }
+        
+        #form {
+            text-align: left;
+            padding-left: 800px;
+            height: 300%;
+            width: 839px;
+            font-size: x-large;
+            font-family: cursive;
+            font-weight: bolder;
+            padding-top: 40px;
+        }
+
+        input {
+            margin-top: 10px;
+            padding-left: 20px;
+            margin-bottom: 20px;
+            padding: 7px;
+            border-radius: 14px;
+            margin: 20px;
+            height: 30px;
+        }
+        .int{
+            height: 17px;
+        }
+
+        #LOGIN{
+            height: 60px;
+            width: 120px;
+        }
+
+        fieldset {
+            padding-left: 54px;
+        }
+
+        legend {
+            align-items: center;
+            font-size: x-large;
+            margin-top: 10px;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="form">
+       
+            <legend>LOGIN-PAGE</legend>
+            <b>E-MAIL : </b> <input type="text" id="mail" placeholder="enter your email"><br>
+            <b>PASSWORD : </b> <input type="password" id="pass" placeholder="enter your password"><br>
+            <input type="checkbox" value="show password" onclick="show()" class="int"><b>SHOW PASSWORD</b><br><br>
+            <b>Don't have an account &nbsp;</b><a href="sign up.html">REGISTER HERE</a> <br><br>
+            <input type="submit" value="LOGIN" id="LOGIN" onclick="home1">
+    </form>
+    <script>
+        function show() {
+            var x = document.getElementById('pass')
+            if (x.type == "password") {
+                x.type = "text"
+            }
+            else {
+                x.type = "password"
+            }
+        }
+        var forms = document.getElementById('form')
+        forms.addEventListener('submit', e => {
+            e.preventDefault()
+
+            var ml = document.getElementById("mail").value
+            var ps = document.getElementById("pass").value
+
+            if (ml == '' && ps == '') {
+                alert('FIELDS CANNOT BE EMPTY')
+            }
+            else if (ml != '' && ps == '') {
+                alert('PASSWORD CANNOT BE EMPTY')
+            }
+            else if (ml = '' && ps != '') {
+                alert('MAIL CANNOT BE EMPTY')
+            }
+            else {
+                confirm("REGISTERED SUCCESSFULLY !!!!")
+                localStorage.setItem('mail', ml)
+                    localStorage.setItem('password', ps)
+
+                    // session storage
+                    sessionStorage.setItem('mail', ml)
+                    sessionStorage.setItem('password', ps)
+                    confirm("REGISTERED SUCCESSFULLY !!!!")
+                    open('./home1.html')
+            }
+        })
+
+    </script>
+</body>
+
+</html>
